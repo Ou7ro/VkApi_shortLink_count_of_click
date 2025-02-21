@@ -1,5 +1,6 @@
 import os
 import requests
+import argparse
 from urllib.parse import urlparse
 from dotenv import load_dotenv
 
@@ -66,9 +67,13 @@ def is_shorten_link(token: str, url: str) -> bool:
 
 
 def main():
-    user_input = input('Введите ссылку: ')
-    parsed_url = urlparse(user_input).path[1:]
-
+    parser = argparse.ArgumentParser(
+        description='Ввод ссылки'
+    )
+    parser.add_argument('link', help='Введите ссылку', type=str)
+    args = parser.parse_args()
+    url = args.link
+    parsed_url = urlparse(url).path[1:]
     load_dotenv('Token.env')
     token = os.environ['VK_API_TOKEN']
 
@@ -77,7 +82,7 @@ def main():
             number_of_view = count_clicks(token, parsed_url)
             print('Количество переходов по ссылке: ', number_of_view)
         else:
-            short_link = shorten_link(token, user_input)
+            short_link = shorten_link(token, url)
             print(short_link)
     except ApiExceptionError as error:
         print(error)
