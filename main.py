@@ -2,7 +2,7 @@ import os
 import requests
 import argparse
 from urllib.parse import urlparse
-from dotenv import load_dotenv
+from environs import env
 
 
 class ApiExceptionError(Exception):
@@ -67,6 +67,7 @@ def is_shorten_link(token: str, url: str) -> bool:
 
 
 def main():
+    env.read_env()
     parser = argparse.ArgumentParser(
         description='Ввод ссылки'
     )
@@ -74,8 +75,7 @@ def main():
     args = parser.parse_args()
     url = args.link
     parsed_url = urlparse(url).path[1:]
-    load_dotenv('Token.env')
-    token = os.environ['VK_API_TOKEN']
+    token = env.str('VK_API_TOKEN')
 
     try:
         if is_shorten_link(token, parsed_url):
