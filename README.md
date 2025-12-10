@@ -30,7 +30,7 @@ VK_API_TOKEN=0l9ehcnt1i9wz0ab6eltbue8ndqxsa4xv1b4a5cedab68182bb53a8
 ## Запуск
 
 - Для получения сокращенного варианта ссылки запустите скрипт следующей консольной командой:
-```pycon
+```python
 python main.py https://www.example.com
 ```
 
@@ -38,20 +38,20 @@ python main.py https://www.example.com
 p.s. Работает как c HTTP, так и с HTTPS протоколами.
 
 Пример вывода в консоль:
-```pycon
+```python
 https://vk.cc/XXXXXX
 ```
 
 - Для получения статистике о количестве переходов, используется ссылка, пройденная через vk.api utils.getLinkStats.
 
 - Для получения информации о колличестве переходов по ссылке, запустите скрипт следующей консольной командой:
-```pycon
+```python
 python main.py https://vk.cc/XXXXXX
 ```
 
 где `https://vk.cc/XXXXXX` - сокращенная ссылка
 
 Пример вывода в консоль:
-```pycon
+```python
 Количество переходов по ссылке: 18
 ```
